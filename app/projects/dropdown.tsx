@@ -13,7 +13,9 @@ export const ProjectDropdown = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <Button variant="outline">...</Button>
+        <Button asChild variant="outline">
+          <p>...</p>
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>Settings</DropdownMenuLabel>
