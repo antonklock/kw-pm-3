@@ -7,15 +7,29 @@ export type Project = {
   id: string;
   name: string;
   localPath: string;
-  status: "healthy" | "at risk" | "needs attention";
+  status: string;
+  statusColor: string;
   notionLink?: string;
 };
 
+const handleStatusColor = (status: string) => {
+  switch (status) {
+    case "green":
+      return "text-green-500";
+    case "yellow":
+      return "text-yellow-500";
+    case "red":
+      return "text-red-500";
+    case "blue":
+      return "text-blue-500";
+    case "default":
+      return "text-gray-500";
+    default:
+      return "text-black";
+  }
+};
+
 export const columns: ColumnDef<Project>[] = [
-  {
-    accessorKey: "id",
-    header: "ID",
-  },
   {
     accessorKey: "name",
     header: "Name",
@@ -38,7 +52,11 @@ export const columns: ColumnDef<Project>[] = [
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => {
-      return <p>{row.original.status}</p>;
+      return (
+        <p className={handleStatusColor(row.original.statusColor)}>
+          {row.original.status}
+        </p>
+      );
     },
   },
   {
